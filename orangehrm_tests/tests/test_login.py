@@ -62,3 +62,12 @@ def test_protected_pages_are_unavailable_after_logout(page):
     login_page.verify_failed_access_to_protected_url()
     expect(page).to_have_url(re.compile("login"))
     expect(page.locator(".oxd-text.oxd-text--h5.orangehrm-login-title")).to_have_text(re.compile("Login"))
+
+def test_tab_order_for_accessibility(page):
+    login_page = LoginPage(page)
+    login_page.go_to_login_page_url()
+    expect(page.locator("input[placeholder='Username']")).to_be_focused()
+    page.keyboard.press("Tab")
+    expect(page.locator("input[placeholder='Password']")).to_be_focused()
+    page.keyboard.press("Tab")
+    expect(page.locator("button[type='submit']")).to_be_focused()
