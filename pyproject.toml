@@ -1,0 +1,10 @@
+[project]
+name = "orangehrm_tests_runner"
+version = "0.1.0"
+dependencies = ["pytest", "playwright"]
+
+[tool.setuptools.packages.find]
+include = ["orangehrm_tests_runner", "orangehrm_tests"]
+
+[project.scripts]
+orangehrm-tests-run = "orangehrm_tests_runner.runner:run_tests"
